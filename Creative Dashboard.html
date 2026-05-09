@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Creative Dashboard — No mates la idea.</title>
+<meta name="description" content="El dashboard donde tus ideas dejan de perderse. Captúralas, organízalas y desarróllalas con IA. Pago único $23." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Playfair+Display:ital,wght@0,700;1,700;1,900&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* === Global scale-down for elegance === */
+  html { font-size: 15px; }
+  body { max-width: 1280px; margin: 0 auto; }
+  .topbar { max-width: 1280px; margin: 0 auto; height: auto !important; padding: 14px 22px; }
+  .topbar .brand img { width: 150px !important; height: auto !important; }
+  .section { padding: 64px 28px !important; }
+  .section .container, .footer .container, .footer-bottom { max-width: 1100px !important; }
+  .hero-centered { padding: 28px 28px 56px !important; }
+
+  /* Hero */
+  .hero h1.hero-h1-oneline { font-size: clamp(40px, 6.4vw, 88px) !important; margin: 0 0 22px !important; }
+  .hero-video { box-shadow: 10px 10px 0 var(--red) !important; }
+  @media (min-width: 980px) { .hero-video { box-shadow: 12px 12px 0 var(--red) !important; } }
+
+  /* Headings */
+  .huge { font-size: clamp(36px, 5.2vw, 72px) !important; line-height: 0.95 !important; }
+  #problem h2 { font-size: clamp(36px, 5.2vw, 72px) !important; margin: 14px 0 36px !important; }
+
+  /* Cards & lede */
+  .p-card { font-size: 18px !important; min-height: 180px; padding: 22px 20px !important; }
+  .p-card .num { font-size: clamp(56px, 8vw, 88px) !important; }
+  .p-card .copy { font-size: clamp(16px, 1.6vw, 19px) !important; line-height: 1.25 !important; }
+
+  .solution .lede { font-size: clamp(22px, 2.4vw, 34px) !important; line-height: 1.15 !important; max-width: 30ch !important; margin: 14px 0 32px !important; }
+
+  .feat { padding: 22px 20px 24px !important; min-height: 200px; }
+  .feat .glyph { font-size: 26px !important; width: 44px !important; height: 44px !important; }
+  .feat h3 { font-size: clamp(20px, 2vw, 24px) !important; margin: 18px 0 6px !important; }
+  .feat p { font-size: 14px !important; }
+  .feat .num-tag { font-size: 10px !important; }
+
+  /* Demo / videos */
+  .demo h2 { font-size: clamp(34px, 5vw, 64px) !important; }
+  .demo .lede { font-size: 12px !important; }
+
+  /* Testimonials */
+  .testimonials h2 { font-size: clamp(34px, 5vw, 64px) !important; margin: 14px 0 36px !important; }
+  .t-card .quote { font-size: clamp(17px, 1.7vw, 20px) !important; }
+
+  /* Pricing */
+  .pricing h2 { font-size: clamp(34px, 5vw, 64px) !important; margin: 14px 0 36px !important; }
+  .tier-price .num { font-size: clamp(72px, 9vw, 110px) !important; }
+  .tier-price .dollar { font-size: clamp(28px, 3vw, 36px) !important; }
+  .tier li { font-size: 14px !important; }
+  .tier-desc { font-size: 13px !important; }
+  .tier-cta { font-size: 13px !important; padding: 14px 16px !important; }
+
+  /* FAQ */
+  .faq h2 { font-size: clamp(34px, 5vw, 64px) !important; margin: 14px 0 28px !important; }
+  .faq-q { font-size: clamp(18px, 2vw, 22px) !important; padding: 18px 0 !important; }
+  .faq-a { font-size: 14px !important; }
+
+  /* Marquee */
+  .marquee { font-size: clamp(48px, 8vw, 100px) !important; }
+
+  /* Hero strip */
+  .hero-strip > div { height: 30px !important; font-size: 13px !important; }
+
+  /* Footer */
+  .footer .logo { font-size: 22px !important; }
+  .footer .tagline { font-size: 15px !important; }
+  .footer ul { font-size: 15px !important; }
+
+  /* Buttons */
+  .btn { font-size: 14px !important; padding: 14px 22px !important; }
+
+  /* Kickers */
+  .kicker { font-size: 11px !important; }
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar" style="font-weight: 200; height: 133px">
+  <a href="#top" class="brand" aria-label="Creative Dashboard">
+    <img src="assets/logo-horizontal.png" alt="Creative Dashboard" style="width: 227px; height: 85px" />
+  </a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#solution" data-i18n="nav.product">Producto</a>
+    <a href="#demo" data-i18n="nav.how">Demo</a>
+    <a href="#pricing" data-i18n="nav.price">Precio</a>
+    <a href="#faq" data-i18n="nav.faq">FAQ</a>
+  </nav>
+  <div class="topbar-right">
+    <div class="lang-toggle" role="tablist" aria-label="Language">
+      <button data-lang="es" class="active" role="tab" aria-selected="true">ES</button>
+      <button data-lang="en" role="tab" aria-selected="false">EN</button>
+    </div>
+    <a href="#pricing" class="mini-cta" data-i18n="nav.cta">Conseguirlo</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero hero-centered">
+  <div class="hero-stack">
+    <div class="hero-pre fade-up">
+      <span class="dot" style="font-size: 4px"></span>
+      <span data-i18n="hero.pre">
+</span>
+      <span style="opacity:.4">
+</span>
+      <span>
+</span>
+    </div>
+
+    <h1 class="hero-h1 hero-h1-oneline fade-up" aria-label="No mates la idea." data-i18n="hero.fullline" style="font-size: 104px; line-height: 1; letter-spacing: -0.04em; text-align: center; white-space: nowrap; margin: 0 0 32px">NO MATES LA IDEA.</h1>
+
+    <div class="hero-video fade-up" id="heroVideo">
+      <div class="v-corner"></div>
+      <div class="barcode" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <img src="assets/hero-image.png" alt="Creative Dashboard" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    </div>
+
+    <div class="hero-cta-row fade-up">
+      <a href="#pricing" class="btn">
+        <span data-i18n="hero.cta">CONSEGUIRLO AHORA</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="hero-strip fade-up" aria-hidden="true">
+      <div class="hs-1" data-i18n="hero.strip.0" style="color: rgb(255, 255, 255)">ORGANIZA</div>
+      <div class="hs-2" data-i18n="hero.strip.1">PLANEA</div>
+      <div class="hs-3" data-i18n="hero.strip.2" style="color: rgb(255, 255, 255)">DESARROLLA</div>
+      <div class="hs-4" data-i18n="hero.strip.3">CALENDARIZA</div>
+      <div class="hs-5" data-i18n="hero.strip.4" style="color: rgb(255, 255, 255)">CREA</div>
+      <div class="hs-6" data-i18n="hero.strip.5" style="color: rgb(255, 255, 255)">EJECUTA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROBLEM ===================== -->
+<section class="section problem" id="problem">
+  <div class="container">
+    <div class="kicker fade-up" data-i18n="problem.kicker">PROBLEMA / 001</div>
+    <h2 class="huge fade-up" style="font-size: 120px" data-i18n="problem.h2">¿POR QUÉ SE MUEREN TUS IDEAS?</h2>
+
+    <div class="problem-grid">
+      <div class="p-card c1 fade-up" style="font-size: 39px">
+        <div class="num">01</div>
+        <div class="corner">
+</div>
+        <p class="copy" data-i18n="problem.cards.0">Las anotas en notas que nunca vuelves a abrir.</p>
+      </div>
+      <div class="p-card c2 fade-up" style="font-size: 39px">
+        <div class="num">02</div>
+        <div class="corner">
+</div>
+        <p class="copy" data-i18n="problem.cards.1">Pierdes el link de inspiración y la idea muere con él.</p>
+      </div>
+      <div class="p-card c3 fade-up" style="font-size: 39px">
+        <div class="num">03</div>
+        <div class="corner">
+</div>
+        <p class="copy" data-i18n="problem.cards.2">El primer paso intimida y la dejas para 'mañana'.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRANSITION BAND ===================== -->
+<section class="transition-band" aria-hidden="true">
+  <div class="marquee" id="marquee">
+    <span data-i18n="solution.callout">NO MATES LA IDEA.</span>
+    <span class="it">
+</span>
+    <span data-i18n="solution.transition">NO MATES LA IDEA.</span>
+    <span class="it">★</span>
+    <span data-i18n="solution.callout">NO MATES LA IDEA.</span>
+    <span class="it">★</span>
+    <span data-i18n="solution.transition">HASTA AHORA.</span>
+    <span class="it">★</span>
+  </div>
+</section>
+
+<!-- ===================== SOLUTION / FEATURES ===================== -->
+<section class="section solution" id="solution">
+  <div class="container">
+    <div class="kicker fade-up" data-i18n="solution.kicker">SOLUCIÓN / 004 PIEZAS</div>
+    <p class="lede fade-up" data-i18n="solution.lede" style="font-family: &#39;Playfair Display&#39;, serif; font-style: italic; font-weight: 700; font-size: 57px; line-height: 1.1; color: var(--red); max-width: 24ch; margin: 26.151px 0px 36px; width: 790px; height: 217px">
+      Un solo lugar donde el caos creativo se convierte en algo real.
+    </p>
+
+    <div class="feat-grid">
+      <article class="feat f1 fade-up" style="background-color: rgb(243, 198, 30)">
+        <div class="num-tag">
+</div>
+        <div class="glyph">→</div>
+        <div>
+          <h3 data-i18n="solution.features.0.title">Captura instantánea</h3>
+          <p data-i18n="solution.features.0.body">Anota ideas y guarda links en segundos, desde cualquier dispositivo.</p>
+        </div>
+      </article>
+      <article class="feat f2 fade-up" style="background-color: rgb(230, 25, 106)">
+        <div class="num-tag">
+</div>
+        <div class="glyph">✦</div>
+        <div>
+          <h3 data-i18n="solution.features.1.title">Organización clara</h3>
+          <p data-i18n="solution.features.1.body">Tags, categorías y vistas que tu cerebro entiende a la primera.</p>
+        </div>
+      </article>
+      <article class="feat f3 fade-up">
+        <div class="num-tag" style="color:var(--cream)">
+</div>
+        <div class="glyph">◐</div>
+        <div>
+          <h3 data-i18n="solution.features.2.title">Prompts de IA integrados</h3>
+          <p data-i18n="solution.features.2.body">Convierte la idea en guion, hook o reel con un click.</p>
+        </div>
+      </article>
+      <article class="feat f4 fade-up" style="background-color: rgb(252, 71, 71)">
+        <div class="num-tag">
+</div>
+        <div class="glyph">□</div>
+        <div>
+          <h3 data-i18n="solution.features.3.title">Todo en un solo lugar</h3>
+          <p data-i18n="solution.features.3.body">Sin saltar entre 5 apps distintas. Una sola ventana, una sola mente.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DEMO GALLERY ===================== -->
+<section class="section demo" id="demo">
+  <div class="container">
+    <div class="kicker fade-up" data-i18n="demo.kicker">DEMO / EN VIVO</div>
+    <h2 class="huge fade-up">
+      <span data-i18n="demo.title.0">MIRA EL DASHBOARD</span> /
+      <span class="it" data-i18n="demo.title.1">en acción.</span>
+    </h2>
+    <p class="lede fade-up" data-i18n="demo.lede">Captura, organiza, desarrolla. Todo desde la misma vista.</p>
+
+    <div class="vid-gallery">
+      <figure class="mac-window mw-1 fade-up">
+        <header class="mac-bar">
+          <span class="mac-dots"><i></i><i></i><i></i></span>
+          <span class="mac-title" data-i18n="demo.labels.0">BANCO DE IDEAS</span>
+          <span class="mac-meta">demo-idea.mp4</span>
+        </header>
+        <video class="mac-video" muted loop autoplay playsinline preload="metadata">
+          <source src="assets/demo-idea.mp4" type="video/mp4" />
+        </video>
+        <figcaption class="mac-caption">
+          <span class="mac-num">01</span>
+          <span data-i18n="demo.labels.0">BANCO DE IDEAS</span>
+        </figcaption>
+      </figure>
+
+      <figure class="mac-window mw-2 fade-up">
+        <header class="mac-bar">
+          <span class="mac-dots"><i></i><i></i><i></i></span>
+          <span class="mac-title" data-i18n="demo.labels.1">GESTIÓN DE CLIENTES</span>
+          <span class="mac-meta">demo-cliente.mp4</span>
+        </header>
+        <video class="mac-video" muted loop autoplay playsinline preload="metadata">
+          <source src="assets/demo-cliente.mp4" type="video/mp4" />
+        </video>
+        <figcaption class="mac-caption">
+          <span class="mac-num">02</span>
+          <span data-i18n="demo.labels.1">GESTIÓN DE CLIENTES</span>
+        </figcaption>
+      </figure>
+
+      <figure class="mac-window mw-3 fade-up">
+        <header class="mac-bar">
+          <span class="mac-dots"><i></i><i></i><i></i></span>
+          <span class="mac-title" data-i18n="demo.labels.2">GENERADOR DE PROMPTS</span>
+          <span class="mac-meta">demo-generar.mp4</span>
+        </header>
+        <video class="mac-video" muted loop autoplay playsinline preload="metadata">
+          <source src="assets/demo-generar.mp4" type="video/mp4" />
+        </video>
+        <figcaption class="mac-caption">
+          <span class="mac-num">03</span>
+          <span data-i18n="demo.labels.2">GENERADOR DE PROMPTS</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <div class="kicker fade-up" data-i18n="testimonials.kicker">PRENSA / LO QUE DICEN</div>
+    <h2 class="huge fade-up">
+      <span data-i18n="testimonials.t1">CREADORES</span>
+      <span class="t-mid" style="color: rgb(245, 197, 24)" data-i18n="testimonials.t2">QUE YA VOLVIERON</span>
+      <span data-i18n="testimonials.t3">A SU CABEZA.</span>
+    </h2>
+
+    <div class="t-grid">
+      <article class="t-card tc1 fade-up">
+        <div class="corner-num">N°.01</div>
+        <div class="quote" data-i18n="testimonials.items.0.quote">Pasé de tener 400 notas sueltas a un sistema. Real.</div>
+        <div class="by">
+          <div class="avatar"></div>
+          <div>
+            <div class="name" data-i18n="testimonials.items.0.name">Lucía M.</div>
+            <div class="handle" data-i18n="testimonials.items.0.handle">@luciacreates</div>
+            <div class="role" data-i18n="testimonials.items.0.role">Creadora · 120k</div>
+          </div>
+        </div>
+      </article>
+      <article class="t-card tc2 fade-up">
+        <div class="corner-num">N°.02</div>
+        <div class="quote" data-i18n="testimonials.items.1.quote">El prompt de hook me ahorra dos horas por reel. No exagero.</div>
+        <div class="by">
+          <div class="avatar"></div>
+          <div>
+            <div class="name" data-i18n="testimonials.items.1.name">Diego R.</div>
+            <div class="handle" data-i18n="testimonials.items.1.handle">@diego.makes</div>
+            <div class="role" data-i18n="testimonials.items.1.role">Editor · 45k</div>
+          </div>
+        </div>
+      </article>
+      <article class="t-card tc3 fade-up">
+        <div class="corner-num">N°.03</div>
+        <div class="quote" data-i18n="testimonials.items.2.quote">Por fin dejé de pagar tres apps que hacían lo mismo a medias.</div>
+        <div class="by">
+          <div class="avatar"></div>
+          <div>
+            <div class="name" data-i18n="testimonials.items.2.name">Ana T.</div>
+            <div class="handle" data-i18n="testimonials.items.2.handle">@anatorres</div>
+            <div class="role" data-i18n="testimonials.items.2.role">Estratega · 220k</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section pricing" id="pricing">
+  <div class="container">
+    <div class="kicker fade-up" data-i18n="pricing.kicker">PRECIO / 3 FORMAS DE ENTRAR</div>
+    <h2 class="huge fade-up">
+      <span data-i18n="pricing.t1">ELIGE</span>
+      <span style="font-family: Anton" data-i18n="pricing.t2">TU MEJOR OPCIÓN:</span>
+    </h2>
+
+    <div class="tier-grid" id="tierGrid"></div>
+
+    <div class="price-where fade-up" style="justify-content:flex-start;color:var(--black);opacity:1;margin-top:36px">
+      <span data-i18n="pricing.where">Disponible en</span>
+      <button class="btn-platform"><span data-i18n="pricing.gum">Gumroad</span> ↗</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="kicker fade-up" data-i18n="faq.kicker">PREGUNTAS / FAQ</div>
+    <h2 class="huge fade-up">
+      <span data-i18n="faq.title.0">DUDAS</span> /
+      <span class="it" data-i18n="faq.title.1">razonables.</span>
+    </h2>
+
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="logo-block">
+      <div class="logo">CREATIVE<span style="color:var(--red)">.</span>DASHBOARD</div>
+      <div class="tagline" data-i18n="footer.tagline">Don't Kill the Idea</div>
+      <div class="lang-toggle" style="align-self:flex-start" role="tablist" aria-label="Language">
+        <button data-lang="es" class="active">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+    <div>
+      <h5>NAV</h5>
+      <ul>
+        <li><a href="#solution" data-i18n="footer.links.0">Producto</a></li>
+        <li><a href="#faq" data-i18n="footer.links.1">FAQ</a></li>
+        <li><a href="#" data-i18n="footer.links.2">Soporte</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>LEGAL</h5>
+      <ul>
+        <li><a href="#" data-i18n="footer.links.3">Términos</a></li>
+        <li><a href="#" data-i18n="footer.links.4">Privacidad</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>SOCIAL</h5>
+      <ul>
+        <li><a href="#" data-i18n="footer.social.0">Instagram</a></li>
+        <li><a href="#" data-i18n="footer.social.1">Twitter/X</a></li>
+        <li><a href="#" data-i18n="footer.social.2">TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.copy">© 2025 Creative Dashboard. Todos los derechos reservados.</span>
+    <span>BUILT FOR CREATORS</span>
+  </div>
+</footer>
+
+</main>
+
+<script src="i18n.js"></script>
+<script>
+/* ============================================================
+   1. i18n — language toggle with deep dot-path lookup
+   ============================================================ */
+const STATE = { lang: 'es' };
+
+function getByPath(obj, path) {
+  return path.split('.').reduce((acc, k) => {
+    if (acc == null || typeof acc === 'string') return undefined;
+    const key = isNaN(k) ? k : Number(k);
+    return acc[key];
+  }, obj);
+}
+
+function applyLang(lang) {
+  STATE.lang = lang;
+  document.documentElement.lang = lang;
+  const dict = window.I18N[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const path = el.getAttribute('data-i18n');
+    let val = getByPath(dict, path);
+    // For composite headings using stub paths like how.title.0 / how.title.1
+    if (val === undefined) {
+      // Handle compound titles encoded as e.g. "how.title.0"
+      const compound = {
+        'demo.title': dict.demo && dict.demo.title,
+        'pricing.title': dict.pricing && dict.pricing.title,
+        'testimonials.title': dict.testimonials && dict.testimonials.title,
+        'faq.title': dict.faq && dict.faq.title
+      };
+      const parts = path.split('.');
+      const idx = Number(parts.pop());
+      const baseKey = parts.join('.');
+      if (compound[baseKey] != null && Number.isInteger(idx)) {
+        const segs = compound[baseKey].split(' / ');
+        val = segs[idx] != null ? segs[idx] : compound[baseKey];
+      }
+    }
+    if (val !== undefined) {
+      if (typeof val === 'string' && val.indexOf('<') !== -1) el.innerHTML = val;
+      else el.textContent = val;
+    }
+  });
+
+  // Toggle button states
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    const isActive = b.dataset.lang === lang;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive);
+  });
+
+  // Rebuild FAQ + Pricing tiers
+  buildFAQ();
+  buildTiers();
+
+  // Marquee text in problem strike — re-find strike word
+  applyStrike();
+}
+
+function applyStrike() {
+  const dict = window.I18N[STATE.lang];
+  // Wrap last problem card's last word as strike if matches
+  const card3 = document.querySelector('.p-card.c3 .copy');
+  if (!card3) return;
+  const strikeWord = dict.problem.strike;
+  let text = card3.textContent;
+  if (text.includes(strikeWord)) {
+    const safe = strikeWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    text = text.replace(new RegExp(`(${safe})`), '<span class="strike">$1</span>');
+    card3.innerHTML = text;
+  }
+}
+
+document.querySelectorAll('.lang-toggle button').forEach(b => {
+  b.addEventListener('click', () => applyLang(b.dataset.lang));
+});
+
+/* ============================================================
+   2a. Pricing tiers — render 3 plans from i18n
+   ============================================================ */
+function buildTiers() {
+  const grid = document.getElementById('tierGrid');
+  if (!grid) return;
+  const tiers = window.I18N[STATE.lang].pricing.tiers;
+  const includes = window.I18N[STATE.lang].pricing.includes;
+  grid.innerHTML = tiers.map((t, i) => {
+    const closed = !!t.closed;
+    const featured = (t.tag || '').includes('MÁS POPULAR') || (t.tag || '').includes('MOST POPULAR');
+    const cls = ['tier', `tier-${i}`, closed ? 'tier-closed' : '', featured ? 'tier-featured' : ''].filter(Boolean).join(' ');
+    const list = (t.list && t.list.length) ? `
+      <h4 class="tier-includes">${includes}</h4>
+      <ul>
+        ${t.list.map(li => `<li><span class="check">✓</span><span>${li}</span></li>`).join('')}
+      </ul>` : '<div class="tier-stamp">✕</div>';
+    const foot = t.footnote ? `<p class="tier-foot">${t.footnote}</p>` : '';
+    const cta = closed
+      ? `<button class="btn tier-cta" disabled aria-disabled="true"><span>${t.cta}</span></button>`
+      : `<a href="#" class="btn tier-cta"><span>${t.cta}</span><span class="arrow">→</span></a>`;
+    return `
+      <article class="${cls}">
+        <div class="tier-tag">${t.tag}</div>
+        <div class="tier-price">
+          <span class="dollar">$</span>
+          <span class="num">${t.price}</span>
+          <span class="unit">${t.unit}</span>
+        </div>
+        <p class="tier-desc">${t.desc}</p>
+        ${list}
+        ${foot}
+        ${cta}
+      </article>`;
+  }).join('');
+}
+
+/* ============================================================
+   2. FAQ accordion
+   ============================================================ */
+function buildFAQ() {
+  const list = document.getElementById('faqList');
+  const items = window.I18N[STATE.lang].faq.items;
+  list.innerHTML = items.map((it, i) => `
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        <span class="num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="text">${it.q}</span>
+        <span class="ic">+</span>
+      </button>
+      <div class="faq-a"><p>${it.a}</p></div>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+}
+
+/* ============================================================
+   3. Hero video crossfade — two layered <video> elements
+   ============================================================ */
+function setupHeroVideo() {
+  const a = document.getElementById('vidA');
+  const b = document.getElementById('vidB');
+  if (!a || !b) return;
+
+  let active = a;
+  let inactive = b;
+
+  const tryPlay = (el) => {
+    const p = el.play();
+    if (p && p.catch) p.catch(() => { /* autoplay blocked, ignore */ });
+  };
+
+  // Begin playback
+  tryPlay(a);
+
+  // Loop window: switch at 8s (or sooner if the clip is shorter)
+  const LOOP_AT = 8.0;
+  function onTimeUpdate() {
+    if (!active.duration || isNaN(active.duration)) return;
+    const switchPoint = Math.min(LOOP_AT, active.duration) - 0.5;
+    if (active.currentTime >= switchPoint) {
+      // crossfade
+      inactive.currentTime = 0;
+      tryPlay(inactive);
+      // Next frame: swap classes
+      requestAnimationFrame(() => {
+        active.classList.add('fade-out');
+        inactive.classList.remove('fade-out');
+      });
+      // swap
+      const tmp = active; active = inactive; inactive = tmp;
+      // Remove this listener; the new active video will fire its own
+      active.removeEventListener('timeupdate', onTimeUpdate);
+      active.addEventListener('timeupdate', onTimeUpdate);
+    }
+  }
+
+  a.addEventListener('timeupdate', onTimeUpdate);
+  b.addEventListener('timeupdate', onTimeUpdate);
+
+  // Some browsers won't autoplay if not in viewport — try when visible
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) tryPlay(active); });
+  }, { threshold: 0.1 });
+  io.observe(document.getElementById('heroVideo'));
+}
+
+/* ============================================================
+   4. Scroll fade-in via IntersectionObserver
+   ============================================================ */
+function setupFadeUp() {
+  const els = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(el => io.observe(el));
+}
+
+/* ============================================================
+   Boot
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang('es');
+  buildFAQ();
+  buildTiers();
+  setupHeroVideo();
+  setupFadeUp();
+});
+</script>
+
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+#top [aria-label="No mates la idea."] >[data-i18n="hero.h1a"] >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { letter-spacing: -10px !important }
+#top [aria-label="No mates la idea."] >[data-i18n="hero.h1a"] >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { letter-spacing: -8.6px !important }
+#problem :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-family: "Playfair Display" !important }
+#top [aria-label="No mates la idea."] >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(230, 50, 42) !important }
+#problem :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 144px !important }
+#problem :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 140px !important }
+#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(0, 0, 0) !important }
+#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 56px !important }
+[data-om-id="256a0bab:92"] { width: 949px !important }
+#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(230, 25, 106) !important }
+#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(30, 30, 30) !important }
+#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(44, 44, 44) !important }
+</style>
