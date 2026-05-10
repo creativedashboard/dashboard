@@ -20,7 +20,7 @@
   .hero-centered { padding: 28px 28px 56px !important; }
 
   /* Hero */
-  .hero h1.hero-h1-oneline { font-size: clamp(40px, 6.4vw, 88px) !important; margin: 0 0 22px !important; }
+  .hero h1.hero-h1-oneline { font-size: clamp(70px, 13vw, 180px) !important; margin: 0 0 22px !important; }
   .hero-video { box-shadow: 10px 10px 0 var(--red) !important; }
   @media (min-width: 980px) { .hero-video { box-shadow: 12px 12px 0 var(--red) !important; } }
 
@@ -33,7 +33,7 @@
   .p-card .num { font-size: clamp(56px, 8vw, 88px) !important; }
   .p-card .copy { font-size: clamp(16px, 1.6vw, 19px) !important; line-height: 1.25 !important; }
 
-  .solution .lede { font-size: clamp(22px, 2.4vw, 34px) !important; line-height: 1.15 !important; max-width: 30ch !important; margin: 14px 0 32px !important; }
+  .solution .lede { font-size: clamp(38px, 5vw, 70px) !important; line-height: 1.1 !important; max-width: 22ch !important; margin: 10px 0 24px !important; }
 
   .feat { padding: 22px 20px 24px !important; min-height: 200px; }
   .feat .glyph { font-size: 26px !important; width: 44px !important; height: 44px !important; }
@@ -98,7 +98,7 @@
       <button data-lang="es" class="active" role="tab" aria-selected="true">ES</button>
       <button data-lang="en" role="tab" aria-selected="false">EN</button>
     </div>
-    <a href="#pricing" class="mini-cta" data-i18n="nav.cta">Conseguirlo</a>
+    <a href="#pricing" class="mini-cta" data-i18n="nav.cta" style="display:inline-block">Conseguirlo</a>
   </div>
 </header>
 
@@ -177,15 +177,14 @@
 <!-- ===================== TRANSITION BAND ===================== -->
 <section class="transition-band" aria-hidden="true">
   <div class="marquee" id="marquee">
-    <span data-i18n="solution.callout">NO MATES LA IDEA.</span>
-    <span class="it">
-</span>
-    <span data-i18n="solution.transition">NO MATES LA IDEA.</span>
-    <span class="it">★</span>
-    <span data-i18n="solution.callout">NO MATES LA IDEA.</span>
-    <span class="it">★</span>
-    <span data-i18n="solution.transition">HASTA AHORA.</span>
-    <span class="it">★</span>
+    <span>NO MATES LA IDEA.</span>
+    <span class="it">/</span>
+    <span>DON'T KILL THE IDEA.</span>
+    <span class="it">/</span>
+    <span>NO MATES LA IDEA.</span>
+    <span class="it">/</span>
+    <span>DON'T KILL THE IDEA.</span>
+    <span class="it">/</span>
   </div>
 </section>
 
@@ -193,7 +192,7 @@
 <section class="section solution" id="solution">
   <div class="container">
     <div class="kicker fade-up" data-i18n="solution.kicker">SOLUCIÓN / 004 PIEZAS</div>
-    <p class="lede fade-up" data-i18n="solution.lede" style="font-family: &#39;Playfair Display&#39;, serif; font-style: italic; font-weight: 700; font-size: 57px; line-height: 1.1; color: var(--red); max-width: 24ch; margin: 26.151px 0px 36px; width: 790px; height: 217px">
+    <p class="lede fade-up" data-i18n="solution.lede" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: clamp(38px, 5vw, 70px); line-height: 1.1; color: var(--red); max-width: 22ch; margin: 10px 0 24px; width: auto; height: auto">
       Un solo lugar donde el caos creativo se convierte en algo real.
     </p>
 
@@ -422,7 +421,7 @@
 
 </main>
 
-<script src="./i18n.js"></script>
+<script src="./i18n.js?v=2"></script>
 <script>
 /* ============================================================
    1. i18n — language toggle with deep dot-path lookup
