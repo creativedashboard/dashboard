@@ -20,7 +20,8 @@
   .hero-centered { padding: 28px 28px 56px !important; }
 
   /* Hero */
-  .hero h1.hero-h1-oneline { font-size: clamp(70px, 13vw, 180px) !important; margin: 0 0 22px !important; }
+  .hero h1.hero-h1-oneline { font-size: clamp(52px, 13vw, 180px) !important; margin: 0 0 22px !important; white-space: normal !important; }
+  @media (min-width: 700px) { .hero h1.hero-h1-oneline { white-space: nowrap !important; } }
   .hero-video { box-shadow: 10px 10px 0 var(--red) !important; }
   @media (min-width: 980px) { .hero-video { box-shadow: 12px 12px 0 var(--red) !important; } }
 
@@ -35,7 +36,10 @@
 
   .solution .lede { font-size: clamp(38px, 5vw, 70px) !important; line-height: 1.1 !important; max-width: 22ch !important; margin: 10px 0 24px !important; }
 
-  .feat { padding: 22px 20px 24px !important; min-height: 200px; }
+  .feat { padding: 14px 16px 16px !important; min-height: 140px !important; }
+  .feat .glyph { font-size: 18px !important; width: 32px !important; height: 32px !important; }
+  .feat h3 { font-size: clamp(16px, 1.6vw, 20px) !important; margin: 10px 0 4px !important; }
+  .feat p { font-size: 12px !important; }
   .feat .glyph { font-size: 26px !important; width: 44px !important; height: 44px !important; }
   .feat h3 { font-size: clamp(20px, 2vw, 24px) !important; margin: 18px 0 6px !important; }
   .feat p { font-size: 14px !important; }
@@ -117,7 +121,7 @@
 </span>
     </div>
 
-    <h1 class="hero-h1 hero-h1-oneline fade-up" aria-label="No mates la idea." data-i18n="hero.fullline" style="font-size: 104px; line-height: 1; letter-spacing: -0.04em; text-align: center; white-space: nowrap; margin: 0 0 32px">NO MATES LA IDEA.</h1>
+    <h1 class="hero-h1 hero-h1-oneline fade-up" aria-label="No mates la idea." data-i18n="hero.fullline" style="font-size: 104px; line-height: 1; letter-spacing: -0.04em; text-align: center; margin: 0 0 32px">NO MATES LA IDEA.</h1>
 
     <div class="hero-video fade-up" id="heroVideo">
       <div class="v-corner"></div>
@@ -192,7 +196,7 @@
 <section class="section solution" id="solution">
   <div class="container">
     <div class="kicker fade-up" data-i18n="solution.kicker">SOLUCIÓN / 004 PIEZAS</div>
-    <p class="lede fade-up" data-i18n="solution.lede" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: clamp(38px, 5vw, 70px); line-height: 1.1; color: var(--red); max-width: 22ch; margin: 10px 0 24px; width: auto; height: auto">
+    <p class="lede fade-up" data-i18n="solution.lede" style="font-family: 'Anton', sans-serif; font-style: normal; font-weight: 400; font-size: clamp(38px, 5vw, 70px); line-height: 1.05; color: var(--black); max-width: 22ch; margin: 10px 0 24px; width: auto; height: auto; letter-spacing: 0.01em; text-transform: uppercase">
       Un solo lugar donde el caos creativo se convierte en algo real.
     </p>
 
@@ -378,19 +382,26 @@
   </div>
 </section>
 
+<!-- ===================== TORN SEPARATOR ===================== -->
+<div style="background:#E63329; margin-top:-2px; line-height:0;">
+  <svg viewBox="0 0 1440 110" preserveAspectRatio="none" style="width:100%;display:block;">
+    <path d="M0,0 L0,75 Q18,92 36,68 Q55,45 75,72 Q95,92 118,62 Q140,38 162,68 Q184,92 208,60 Q232,34 258,66 Q278,88 304,56 Q330,28 356,62 Q378,86 405,54 Q430,26 456,60 Q478,84 506,52 Q530,26 558,62 Q580,86 606,54 Q630,28 658,66 Q680,88 706,56 Q730,28 756,65 Q778,88 806,55 Q830,26 858,62 Q882,86 908,54 Q932,26 960,63 Q984,86 1010,54 Q1034,26 1060,65 Q1084,88 1110,56 Q1134,28 1160,66 Q1182,88 1208,56 Q1232,28 1258,65 Q1280,88 1308,54 Q1332,24 1360,62 Q1384,88 1412,54 Q1428,36 1440,60 L1440,0 Z" fill="#F4EFE6"/>
+  </svg>
+</div>
+
 <!-- ===================== FOOTER ===================== -->
-<footer class="footer">
+<footer class="footer" style="background:#E63329; color:#F4EFE6; padding-top:40px;">
   <div class="container">
     <div class="logo-block">
-      <div class="logo">CREATIVE<span style="color:var(--red)">.</span>DASHBOARD</div>
-      <div class="tagline" data-i18n="footer.tagline">Don't Kill the Idea</div>
-      <div class="lang-toggle" style="align-self:flex-start" role="tablist" aria-label="Language">
-        <button data-lang="es" class="active">ES</button>
-        <button data-lang="en">EN</button>
+      <div class="logo" style="color:#F4EFE6;">CREATIVE<span style="color:#F4EFE6; opacity:0.6">.</span>DASHBOARD</div>
+      <div class="tagline" data-i18n="footer.tagline" style="color:#F4EFE6; opacity:0.8;">Don't Kill the Idea</div>
+      <div class="lang-toggle" style="align-self:flex-start; border-color:#F4EFE6;" role="tablist" aria-label="Language">
+        <button data-lang="es" class="active" style="color:#F4EFE6;">ES</button>
+        <button data-lang="en" style="color:#F4EFE6;">EN</button>
       </div>
     </div>
     <div>
-      <h5>NAV</h5>
+      <h5 style="color:#F4EFE6; opacity:0.6;">NAV</h5>
       <ul>
         <li><a href="#solution" data-i18n="footer.links.0">Producto</a></li>
         <li><a href="#faq" data-i18n="footer.links.1">FAQ</a></li>
@@ -398,22 +409,22 @@
       </ul>
     </div>
     <div>
-      <h5>LEGAL</h5>
-      <ul>
-        <li><a href="#" data-i18n="footer.links.3">Términos</a></li>
-        <li><a href="#" data-i18n="footer.links.4">Privacidad</a></li>
+      <h5 style="color:#F4EFE6; opacity:0.6;">LEGAL</h5>
+      <ul style="color:#F4EFE6;">
+        <li><a href="#" data-i18n="footer.links.3" style="color:#F4EFE6;">Términos</a></li>
+        <li><a href="#" data-i18n="footer.links.4" style="color:#F4EFE6;">Privacidad</a></li>
       </ul>
     </div>
     <div>
-      <h5>SOCIAL</h5>
-      <ul>
-        <li><a href="#" data-i18n="footer.social.0">Instagram</a></li>
-        <li><a href="#" data-i18n="footer.social.1">Twitter/X</a></li>
-        <li><a href="#" data-i18n="footer.social.2">TikTok</a></li>
+      <h5 style="color:#F4EFE6; opacity:0.6;">SOCIAL</h5>
+      <ul style="color:#F4EFE6;">
+        <li><a href="#" data-i18n="footer.social.0" style="color:#F4EFE6;">Instagram</a></li>
+        <li><a href="#" data-i18n="footer.social.1" style="color:#F4EFE6;">Twitter/X</a></li>
+        <li><a href="#" data-i18n="footer.social.2" style="color:#F4EFE6;">TikTok</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="footer-bottom" style="border-color:rgba(244,239,230,0.3); color:#F4EFE6;">
     <span data-i18n="footer.copy">© 2025 Creative Dashboard. Todos los derechos reservados.</span>
     <span>BUILT FOR CREATORS</span>
   </div>
@@ -640,6 +651,57 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeroVideo();
   setupFadeUp();
 });
+</script>
+
+<!-- ===================== NEWSLETTER POPUP ===================== -->
+<div id="nl-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:1000; align-items:center; justify-content:center; padding:20px;">
+  <div id="nl-modal" style="width:100%; max-width:520px; border:2px solid #101010; overflow:hidden; position:relative; box-shadow: 8px 8px 0 #101010;">
+    <!-- Botón cerrar -->
+    <button id="nl-close" style="position:absolute; top:14px; right:16px; background:none; border:none; font-size:22px; cursor:pointer; font-family:monospace; z-index:2; color:#101010; font-weight:bold;">✕</button>
+
+    <!-- Parte superior cream -->
+    <div style="background:#F4EFE6; padding:40px 36px 28px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; opacity:0.5; margin-bottom:12px;">NEWSLETTER / DESCUENTOS</div>
+      <h2 style="font-family:'Anton',sans-serif; font-size:clamp(32px,6vw,52px); line-height:1; margin:0 0 10px; text-transform:uppercase; color:#101010;">¿TE GUSTAN LOS DESCUENTOS?</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:15px; color:#444; margin:0;">Suscríbete al newsletter y recibe ofertas, novedades y recursos para creadores.</p>
+    </div>
+
+    <!-- Separador rasgado -->
+    <div style="background:#E63329; margin-top:-2px; line-height:0;">
+      <svg viewBox="0 0 520 36" preserveAspectRatio="none" style="width:100%;display:block;">
+        <path d="M0,0 L0,22 Q16,34 32,18 Q48,6 65,22 Q80,34 98,16 Q115,4 132,20 Q148,32 165,16 Q182,4 200,20 Q216,32 234,14 Q252,2 270,18 Q286,32 304,14 Q322,2 340,20 Q356,32 374,14 Q392,2 410,20 Q426,34 444,16 Q460,4 478,20 Q494,32 510,16 L520,12 L520,0 Z" fill="#F4EFE6"/>
+      </svg>
+    </div>
+
+    <!-- Parte inferior roja -->
+    <div style="background:#E63329; padding:24px 36px 32px;">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <input type="email" placeholder="tu@email.com" style="flex:1; min-width:200px; padding:12px 16px; font-family:'JetBrains Mono',monospace; font-size:14px; border:2px solid #F4EFE6; background:transparent; color:#F4EFE6; outline:none;" />
+        <button onclick="document.getElementById('nl-overlay').style.display='none'" style="background:#F4EFE6; color:#E63329; border:none; padding:12px 20px; font-family:'Anton',sans-serif; font-size:15px; letter-spacing:0.04em; cursor:pointer; text-transform:uppercase; white-space:nowrap;">SUSCRIBIRME →</button>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(244,239,230,0.6); margin:10px 0 0; letter-spacing:0.06em;">SIN SPAM. SOLO LO QUE VALE LA PENA.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  if (localStorage.getItem('nl-dismissed')) return;
+  setTimeout(function() {
+    var overlay = document.getElementById('nl-overlay');
+    overlay.style.display = 'flex';
+  }, 4000);
+  document.getElementById('nl-close').addEventListener('click', function() {
+    document.getElementById('nl-overlay').style.display = 'none';
+    localStorage.setItem('nl-dismissed', '1');
+  });
+  document.getElementById('nl-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.style.display = 'none';
+      localStorage.setItem('nl-dismissed', '1');
+    }
+  });
+})();
 </script>
 
 </body>
