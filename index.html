@@ -8,11 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Playfair+Display:ital,wght@0,700;1,700;1,900&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="./styles.css?v=9" />
 <style>
   /* === Global scale-down for elegance === */
-  html { font-size: 15px; }
-  body { max-width: 1280px; margin: 0 auto; }
+  html { font-size: 15px; background: #F4EFE6; }
+  body { max-width: 1280px; margin: 0 auto; background: transparent !important; }
+  #ink-canvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
   .topbar { max-width: 1280px; margin: 0 auto; height: auto !important; padding: 14px 22px; }
   .topbar .brand img { width: 150px !important; height: auto !important; }
   .section { padding: 64px 28px !important; }
@@ -25,9 +26,14 @@
   .hero-video { box-shadow: 10px 10px 0 var(--red) !important; }
   @media (min-width: 980px) { .hero-video { box-shadow: 12px 12px 0 var(--red) !important; } }
 
-  /* Headings */
-  .huge { font-size: clamp(36px, 5.2vw, 72px) !important; line-height: 0.95 !important; }
-  #problem h2 { font-size: clamp(36px, 5.2vw, 72px) !important; margin: 14px 0 36px !important; }
+  /* Headings — unified across all sections */
+  .section h2.huge,
+  .huge { font-size: clamp(44px, 6vw, 78px) !important; line-height: 0.95 !important; font-family: 'Anton', sans-serif !important; }
+  #problem h2,
+  .demo h2,
+  .testimonials h2,
+  .pricing h2,
+  .faq h2 { font-size: clamp(44px, 6vw, 78px) !important; margin: 14px 0 36px !important; font-family: 'Anton', sans-serif !important; }
 
   /* Cards & lede */
   .p-card { font-size: 18px !important; min-height: 180px; padding: 22px 20px !important; }
@@ -46,15 +52,12 @@
   .feat .num-tag { font-size: 10px !important; }
 
   /* Demo / videos */
-  .demo h2 { font-size: clamp(34px, 5vw, 64px) !important; }
   .demo .lede { font-size: 12px !important; }
 
   /* Testimonials */
-  .testimonials h2 { font-size: clamp(34px, 5vw, 64px) !important; margin: 14px 0 36px !important; }
   .t-card .quote { font-size: clamp(17px, 1.7vw, 20px) !important; }
 
   /* Pricing */
-  .pricing h2 { font-size: clamp(34px, 5vw, 64px) !important; margin: 14px 0 36px !important; }
   .tier-price .num { font-size: clamp(72px, 9vw, 110px) !important; }
   .tier-price .dollar { font-size: clamp(28px, 3vw, 36px) !important; }
   .tier li { font-size: 14px !important; }
@@ -62,7 +65,6 @@
   .tier-cta { font-size: 13px !important; padding: 14px 16px !important; }
 
   /* FAQ */
-  .faq h2 { font-size: clamp(34px, 5vw, 64px) !important; margin: 14px 0 28px !important; }
   .faq-q { font-size: clamp(18px, 2vw, 22px) !important; padding: 18px 0 !important; }
   .faq-a { font-size: 14px !important; }
 
@@ -85,6 +87,7 @@
 </style>
 </head>
 <body>
+<canvas id="ink-canvas"></canvas>
 
 <!-- ===================== TOP BAR ===================== -->
 <header class="topbar" style="font-weight: 200; height: 133px">
@@ -111,17 +114,8 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero hero-centered">
   <div class="hero-stack">
-    <div class="hero-pre fade-up">
-      <span class="dot" style="font-size: 4px"></span>
-      <span data-i18n="hero.pre">
-</span>
-      <span style="opacity:.4">
-</span>
-      <span>
-</span>
-    </div>
-
-    <h1 class="hero-h1 hero-h1-oneline fade-up" aria-label="No mates la idea." data-i18n="hero.fullline" style="font-size: 104px; line-height: 1; letter-spacing: -0.04em; text-align: center; margin: 0 0 32px">NO MATES LA IDEA.</h1>
+    <p class="fade-up" data-i18n="hero.tagline" style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:clamp(20px,2.2vw,30px); text-align:center; color:#333; margin:0 0 14px; letter-spacing:0.01em;">Tus ideas merecen más que quedarse en borradores.</p>
+    <h1 class="hero-h1 hero-h1-oneline fade-up" data-i18n="hero.fullline" aria-label="No mates la idea." style="font-size: 104px; line-height: 1; letter-spacing: -0.04em; text-align: center; margin: 0 0 18px">NO <span style="color:#E63329">MATES</span> LA IDEA.</h1>
 
     <div class="hero-video fade-up" id="heroVideo">
       <div class="v-corner"></div>
@@ -153,7 +147,7 @@
 <section class="section problem" id="problem">
   <div class="container">
     <div class="kicker fade-up" data-i18n="problem.kicker">PROBLEMA / 001</div>
-    <h2 class="huge fade-up" style="font-size: 120px" data-i18n="problem.h2">¿POR QUÉ SE MUEREN TUS IDEAS?</h2>
+    <h2 class="huge fade-up" data-i18n="problem.h2">¿POR QUÉ SE MUEREN TUS IDEAS?</h2>
 
     <div class="problem-grid">
       <div class="p-card c1 fade-up" style="font-size: 39px">
@@ -195,46 +189,155 @@
 <!-- ===================== SOLUTION / FEATURES ===================== -->
 <section class="section solution" id="solution">
   <div class="container">
-    <div class="kicker fade-up" data-i18n="solution.kicker">SOLUCIÓN / 004 PIEZAS</div>
-    <p class="lede fade-up" data-i18n="solution.lede" style="font-family: 'Anton', sans-serif; font-style: normal; font-weight: 400; font-size: clamp(38px, 5vw, 70px); line-height: 1.05; color: var(--black); max-width: 22ch; margin: 10px 0 24px; width: auto; height: auto; letter-spacing: 0.01em; text-transform: uppercase">
-      Un solo lugar donde el caos creativo se convierte en algo real.
+    <div class="kicker fade-up" data-i18n="solution.kicker">SOLUCIÓN</div>
+    <p class="lede fade-up" style="font-family: 'Anton', sans-serif; font-style: normal; font-weight: 400; font-size: clamp(38px, 5vw, 70px); line-height: 1.05; color: var(--black); max-width: 22ch; margin: 10px 0 24px; width: auto; height: auto; letter-spacing: 0.01em; text-transform: uppercase">
+      <span data-i18n="solution.ledePart1">DE IDEAS SUELTAS A</span> <span data-i18n="solution.ledePart2" style="font-family:'Playfair Display',serif; font-style:italic; text-transform:uppercase; color:rgb(230,25,106);">Contenido Real.</span>
     </p>
 
     <div class="feat-grid">
-      <article class="feat f1 fade-up" style="background-color: rgb(243, 198, 30)">
-        <div class="num-tag">
-</div>
-        <div class="glyph">→</div>
-        <div>
-          <h3 data-i18n="solution.features.0.title">Captura instantánea</h3>
-          <p data-i18n="solution.features.0.body">Anota ideas y guarda links en segundos, desde cualquier dispositivo.</p>
+      <!-- CARD 1: Captura ideas -->
+      <article class="feat f1 fade-up">
+        <div class="feat-left">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3 data-i18n="solution.features.0.title">CAPTURA IDEAS CUANDO NACEN</h3>
+          <p data-i18n="solution.features.0.body">Guarda referencias, pensamientos, links o conceptos antes de que desaparezcan.</p>
+        </div>
+        <div class="feat-right">
+          <div class="fmock mock-reveal">
+            <div class="fmock-head">
+              <span class="fmock-icon-red"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E63329" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+              <span class="fmock-title" data-i18n="solution.m1Title">Nueva idea</span>
+              <span class="fmock-plus">+</span>
+            </div>
+            <div class="fmock-sep"></div>
+            <div class="fmock-input" data-i18n="solution.mockExample">Idea para reel sobre storytelling de marca</div>
+            <div class="fmock-toolbar">
+              <span class="fmock-tbicons">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </span>
+              <button class="fmock-btn" data-i18n="solution.m1Save">Guardar</button>
+            </div>
+          </div>
         </div>
       </article>
-      <article class="feat f2 fade-up" style="background-color: rgb(230, 25, 106)">
-        <div class="num-tag">
-</div>
-        <div class="glyph">✦</div>
-        <div>
-          <h3 data-i18n="solution.features.1.title">Organización clara</h3>
-          <p data-i18n="solution.features.1.body">Tags, categorías y vistas que tu cerebro entiende a la primera.</p>
+
+      <!-- CARD 2: Clientes -->
+      <article class="feat f2 fade-up">
+        <div class="feat-left">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3 data-i18n="solution.features.1.title">CADA CLIENTE TIENE CONTEXTO</h3>
+          <p data-i18n="solution.features.1.body">Organiza ideas según marca, tono, plataforma y estilo de contenido.</p>
+        </div>
+        <div class="feat-right">
+          <div class="fmock fmock-clients mock-reveal">
+            <div class="fmock-head">
+              <span class="fmock-title" style="font-size:13px; font-weight:600;" data-i18n="solution.m2Title">Clientes</span>
+              <span style="color:#E63329; font-size:11px; font-weight:500;" data-i18n="solution.m2New">+ Nuevo cliente</span>
+            </div>
+            <div class="fmock-sep"></div>
+            <div class="fmock-client-row">
+              <span class="fmock-avatar" style="background:#fde0e0; color:#c0392b;">A</span>
+              <div class="fmock-client-info">
+                <div class="fmock-client-name" data-i18n="solution.m2c1">Cliente A</div>
+                <div class="fmock-tags"><span class="fmock-tag" data-i18n="solution.m2t1">Tono: Cercano</span><span class="fmock-tag" data-i18n="solution.m2p1">Plataformas: IG, TikTok</span></div>
+                <div class="fmock-tags"><span class="fmock-tag" data-i18n="solution.m2s1">Estilo: Educativo</span></div>
+              </div>
+              <span class="fmock-arrow">›</span>
+            </div>
+            <div class="fmock-sep"></div>
+            <div class="fmock-client-row">
+              <span class="fmock-avatar" style="background:#fef3cd; color:#8a6200;">B</span>
+              <div class="fmock-client-info">
+                <div class="fmock-client-name" data-i18n="solution.m2c2">Cliente B</div>
+                <div class="fmock-tags"><span class="fmock-tag" data-i18n="solution.m2t2">Tono: Profesional</span><span class="fmock-tag" data-i18n="solution.m2p2">Plataformas: IG, LinkedIn</span></div>
+              </div>
+              <span class="fmock-arrow">›</span>
+            </div>
+            <div class="fmock-sep"></div>
+            <div class="fmock-client-row">
+              <span class="fmock-avatar" style="background:#e8e4f8; color:#6b5dd3;">C</span>
+              <div class="fmock-client-info">
+                <div class="fmock-client-name" data-i18n="solution.m2c3">Cliente C</div>
+                <div class="fmock-tags"><span class="fmock-tag" data-i18n="solution.m2t3">Tono: Divertido</span><span class="fmock-tag" data-i18n="solution.m2p3">Plataformas: IB, TikTok</span></div>
+              </div>
+              <span class="fmock-arrow">›</span>
+            </div>
+          </div>
         </div>
       </article>
+
+      <!-- CARD 3: Generador -->
       <article class="feat f3 fade-up">
-        <div class="num-tag" style="color:var(--cream)">
-</div>
-        <div class="glyph">◐</div>
-        <div>
-          <h3 data-i18n="solution.features.2.title">Prompts de IA integrados</h3>
-          <p data-i18n="solution.features.2.body">Convierte la idea en guion, hook o reel con un click.</p>
+        <div class="feat-left">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3 data-i18n="solution.features.2.title">CONVIERTE IDEAS EN CONTENIDO</h3>
+          <p data-i18n="solution.features.2.body">Genera hooks, guiones, copies y prompts usando IA conectada a tu workflow creativo.</p>
+        </div>
+        <div class="feat-right">
+          <div class="fmock mock-reveal">
+            <div style="font-size:10px; font-weight:700; color:#E63329; letter-spacing:0.04em; margin-bottom:6px;" data-i18n="solution.m3label">Idea seleccionada</div>
+            <div style="display:flex; align-items:flex-start; gap:7px; margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid #f0f0f0;">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:1px;"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.7-3.3 6H8.3C6.3 13.7 5 11.5 5 9a7 7 0 0 1 7-7z"/></svg>
+              <span style="font-size:11px; line-height:1.4; color:#222;" data-i18n="solution.mockExampleRich">Idea para reel sobre <strong>storytelling de marca</strong></span>
+            </div>
+            <div style="font-size:9px; font-weight:800; color:#E63329; letter-spacing:0.1em; margin-bottom:6px;" data-i18n="solution.m3generate">GENERAR CONTENIDO</div>
+            <div class="fmock-tabs">
+              <span class="fmock-tab active">Hook</span>
+              <span class="fmock-tab" data-i18n="solution.m3tab2">Guión</span>
+              <span class="fmock-tab">Copy</span>
+              <span class="fmock-tab">Prompt</span>
+            </div>
+            <div class="fmock-ai-box">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#E63329" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M5 17l.8 2.2L8 20l-2.2.8L5 23l-.8-2.2L2 20l2.2-.8L5 17z"/></svg>
+              <p style="font-size:10px; line-height:1.5; color:#333; margin:0;" data-i18n="solution.m3ai">¿Sabías que las marcas que cuentan historias reales conectan 3x más que las que solo venden? Te cuento cómo hacerlo en 3 pasos</p>
+            </div>
+            <button class="fmock-btn" style="margin-top:8px; width:auto;" data-i18n="solution.m3use">Usar en guion</button>
+          </div>
         </div>
       </article>
-      <article class="feat f4 fade-up" style="background-color: rgb(252, 71, 71)">
-        <div class="num-tag">
-</div>
-        <div class="glyph">□</div>
-        <div>
-          <h3 data-i18n="solution.features.3.title">Todo en un solo lugar</h3>
-          <p data-i18n="solution.features.3.body">Sin saltar entre 5 apps distintas. Una sola ventana, una sola mente.</p>
+
+      <!-- CARD 4: Stats dashboard -->
+      <article class="feat f4 fade-up">
+        <div class="feat-left">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+          </div>
+          <h3 data-i18n="solution.features.3.title">TODO SIGUE CONECTADO</h3>
+          <p data-i18n="solution.features.3.body">Ideas, campañas, tendencias y calendario trabajando dentro del mismo sistema.</p>
+        </div>
+        <div class="feat-right">
+          <div class="fmock-stats mock-reveal">
+            <div class="fmock-stat-grid">
+              <div class="fmock-stat-card">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#c49a00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.7-3.3 6H8.3C6.3 13.7 5 11.5 5 9a7 7 0 0 1 7-7z"/></svg>
+                <span class="fmock-stat-label">Ideas</span>
+                <span class="fmock-stat-num">24</span>
+              </div>
+              <div class="fmock-stat-card">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <span class="fmock-stat-label" data-i18n="solution.m4clients">Clientes</span>
+                <span class="fmock-stat-num">8</span>
+              </div>
+              <div class="fmock-stat-card">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+                <span class="fmock-stat-label" data-i18n="solution.m4campaigns">Campañas</span>
+                <span class="fmock-stat-num">5</span>
+              </div>
+              <div class="fmock-stat-card">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E63329" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span class="fmock-stat-label" data-i18n="solution.m4calendar">Calendario</span>
+                <span class="fmock-stat-num">12</span>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
     </div>
@@ -306,8 +409,8 @@
     <div class="kicker fade-up" data-i18n="testimonials.kicker">PRENSA / LO QUE DICEN</div>
     <h2 class="huge fade-up">
       <span data-i18n="testimonials.t1">CREADORES</span>
-      <span class="t-mid" style="color: rgb(245, 197, 24)" data-i18n="testimonials.t2">QUE YA VOLVIERON</span>
-      <span data-i18n="testimonials.t3">A SU CABEZA.</span>
+      <span class="t-mid it" style="color: rgb(230, 25, 106); font-family:'Playfair Display',serif; font-style:italic; text-transform:none;" data-i18n="testimonials.t2">USANDO MEJOR</span>
+      <span data-i18n="testimonials.t3">SUS IDEAS.</span>
     </h2>
 
     <div class="t-grid">
@@ -383,18 +486,17 @@
 </section>
 
 <!-- ===================== TORN SEPARATOR ===================== -->
-<div style="background:#E63329; margin-top:-2px; line-height:0;">
+<div style="background:#E63329; margin-top:-2px; line-height:0; width:100vw; margin-left:calc(50% - 50vw);">
   <svg viewBox="0 0 1440 110" preserveAspectRatio="none" style="width:100%;display:block;">
     <path d="M0,0 L0,75 Q18,92 36,68 Q55,45 75,72 Q95,92 118,62 Q140,38 162,68 Q184,92 208,60 Q232,34 258,66 Q278,88 304,56 Q330,28 356,62 Q378,86 405,54 Q430,26 456,60 Q478,84 506,52 Q530,26 558,62 Q580,86 606,54 Q630,28 658,66 Q680,88 706,56 Q730,28 756,65 Q778,88 806,55 Q830,26 858,62 Q882,86 908,54 Q932,26 960,63 Q984,86 1010,54 Q1034,26 1060,65 Q1084,88 1110,56 Q1134,28 1160,66 Q1182,88 1208,56 Q1232,28 1258,65 Q1280,88 1308,54 Q1332,24 1360,62 Q1384,88 1412,54 Q1428,36 1440,60 L1440,0 Z" fill="#F4EFE6"/>
   </svg>
 </div>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="footer" style="background:#E63329; color:#F4EFE6; padding-top:40px;">
+<footer class="footer" style="background:#E63329; color:#F4EFE6; padding-top:40px; width:100vw; margin-left:calc(50% - 50vw);">
   <div class="container">
     <div class="logo-block">
-      <div class="logo" style="color:#F4EFE6;">CREATIVE<span style="color:#F4EFE6; opacity:0.6">.</span>DASHBOARD</div>
-      <div class="tagline" data-i18n="footer.tagline" style="color:#F4EFE6; opacity:0.8;">Don't Kill the Idea</div>
+      <img src="./assets/logo-horizontal-blanco.png" alt="Creative Dashboard" style="width:180px; height:auto;" />
       <div class="lang-toggle" style="align-self:flex-start; border-color:#F4EFE6;" role="tablist" aria-label="Language">
         <button data-lang="es" class="active" style="color:#F4EFE6;">ES</button>
         <button data-lang="en" style="color:#F4EFE6;">EN</button>
@@ -432,7 +534,7 @@
 
 </main>
 
-<script src="./i18n.js?v=2"></script>
+<script src="./i18n.js?v=8"></script>
 <script>
 /* ============================================================
    1. i18n — language toggle with deep dot-path lookup
@@ -639,6 +741,20 @@ function setupFadeUp() {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   els.forEach(el => io.observe(el));
+
+  // Parallax on mockup cards
+  const parallaxEls = document.querySelectorAll('.mock-reveal');
+  function runParallax() {
+    const vh = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+      const offset = (centerY - vh / 2) * 0.12;
+      el.style.transform = `translateY(${offset}px)`;
+    });
+  }
+  window.addEventListener('scroll', runParallax, { passive: true });
+  runParallax();
 }
 
 /* ============================================================
@@ -704,20 +820,129 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
-</body>
-</html>
+<!-- ===================== PARTICLE FIELD ===================== -->
+<script>
+(function() {
+  const canvas = document.getElementById('ink-canvas');
+  const ctx = canvas.getContext('2d');
+  const N = 2800;
+  let particles = [], W, H;
+  let mouse = { x: -999, y: -999 };
+  let ripples = [];
 
-<style id="__om-edit-overrides">
-#top [aria-label="No mates la idea."] >[data-i18n="hero.h1a"] >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { letter-spacing: -10px !important }
-#top [aria-label="No mates la idea."] >[data-i18n="hero.h1a"] >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { letter-spacing: -8.6px !important }
-#problem :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-family: "Playfair Display" !important }
-#top [aria-label="No mates la idea."] >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(230, 50, 42) !important }
-#problem :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 144px !important }
-#problem :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 140px !important }
-#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(0, 0, 0) !important }
-#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 56px !important }
-[data-om-id="256a0bab:92"] { width: 949px !important }
-#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(230, 25, 106) !important }
-#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(30, 30, 30) !important }
-#solution .lede >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { color: rgb(44, 44, 44) !important }
-</style>
+  function init() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    particles = [];
+    for (let i = 0; i < N; i++) {
+      const hx = Math.random() * W;
+      const hy = Math.random() * H;
+      const isRed = Math.random() < 0.07;
+      particles.push({
+        x: hx, y: hy, hx, hy,
+        vx: 0, vy: 0,
+        r: Math.random() * 1.4 + 0.4,
+        isRed,
+        op: isRed ? (Math.random() * 0.35 + 0.15) : (Math.random() * 0.18 + 0.06),
+        drift: Math.random() * Math.PI * 2,
+        driftSpeed: (Math.random() - 0.5) * 0.008
+      });
+    }
+  }
+
+  function update(t) {
+    ripples = ripples.filter(r => r.age < 1.6);
+    ripples.forEach(r => r.age += 0.016);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      /* gentle home drift */
+      p.drift += p.driftSpeed;
+      const tx = p.hx + Math.cos(p.drift) * 1.8;
+      const ty = p.hy + Math.sin(p.drift) * 1.8;
+
+      let fx = (tx - p.x) * 0.045;
+      let fy = (ty - p.y) * 0.045;
+
+      /* mouse repulsion */
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const d2 = dx*dx + dy*dy;
+      const R = 110;
+      if (d2 < R*R && d2 > 0) {
+        const d = Math.sqrt(d2);
+        const f = ((R - d) / R) * 7;
+        fx += (dx/d) * f;
+        fy += (dy/d) * f;
+      }
+
+      /* click ripple wave */
+      ripples.forEach(r => {
+        const rdx = p.x - r.x, rdy = p.y - r.y;
+        const rd = Math.sqrt(rdx*rdx + rdy*rdy);
+        const front = r.age * 380;
+        const diff = Math.abs(rd - front);
+        if (diff < 55 && rd > 0) {
+          const intensity = (1 - diff/55) * (1 - r.age/1.6) * 14;
+          fx += (rdx/rd) * intensity;
+          fy += (rdy/rd) * intensity;
+        }
+      });
+
+      p.vx = (p.vx + fx) * 0.82;
+      p.vy = (p.vy + fy) * 0.82;
+      p.x += p.vx;
+      p.y += p.vy;
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* cream background */
+    ctx.fillStyle = '#F4EFE6';
+    ctx.fillRect(0, 0, W, H);
+
+    /* dark particles */
+    ctx.fillStyle = '#101010';
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      if (p.isRed) continue;
+      ctx.globalAlpha = p.op;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+      ctx.fill();
+    }
+
+    /* red accent particles */
+    ctx.fillStyle = '#E63329';
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      if (!p.isRed) continue;
+      ctx.globalAlpha = p.op;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 1.2, 0, 6.2832);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+  }
+
+  let last = 0;
+  function loop(t) {
+    update(t);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', init);
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener('click', e => ripples.push({ x: e.clientX, y: e.clientY, age: 0 }));
+
+  init();
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>

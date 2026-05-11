@@ -4,6 +4,7 @@ window.I18N = {
     nav: { product: "Producto", how: "Demo", price: "Precio", faq: "FAQ", cta: "Conseguirlo" },
     hero: {
       pre: "",
+      tagline: "Tus ideas merecen más que quedarse en borradores.",
       h1a: "NO",
       h1b: "MATES",
       h1c: "LA IDEA.",
@@ -16,7 +17,7 @@ window.I18N = {
     },
     problem: {
       kicker: "PROBLEMA / 001",
-      h2: "¿POR QUÉ SE MUEREN TUS IDEAS?",
+      h2: '¿POR QUÉ SE <span style="color:var(--red)">MUEREN TUS IDEAS</span>?',
       h1a: "TUS IDEAS",
       h1b: "SE MUEREN.",
       cards: [
@@ -27,16 +28,30 @@ window.I18N = {
       strike: "mañana"
     },
     solution: {
-      kicker: "SOLUCIÓN / 004 PIEZAS",
+      kicker: "SOLUCIÓN",
       transition: "HASTA AHORA.",
       callout: "NO MATES LA IDEA.",
-      lede: "Un solo lugar donde el caos creativo se convierte en algo real.",
+      lede: "DE IDEAS SUELTAS A CONTENIDO REAL.",
+      ledePart1: "DE IDEAS SUELTAS A",
+      ledePart2: "Contenido Real.",
       features: [
-        { tag: "→", title: "Captura instantánea", body: "Anota ideas y guarda links en segundos, desde cualquier dispositivo." },
-        { tag: "✦", title: "Organización clara", body: "Tags, categorías y vistas que tu cerebro entiende a la primera." },
-        { tag: "◐", title: "Prompts de IA integrados", body: "Convierte la idea en guion, hook o reel con un click." },
-        { tag: "□", title: "Todo en un solo lugar", body: "Sin saltar entre 5 apps distintas. Una sola ventana, una sola mente." }
-      ]
+        { tag: "", title: "CAPTURA IDEAS CUANDO NACEN", body: "Guarda referencias, pensamientos, links o conceptos antes de que desaparezcan." },
+        { tag: "", title: "CADA CLIENTE TIENE CONTEXTO", body: "Organiza ideas según marca, tono, plataforma y estilo de contenido." },
+        { tag: "", title: "CONVIERTE IDEAS EN CONTENIDO", body: "Genera hooks, guiones, copies y prompts usando IA conectada a tu workflow creativo." },
+        { tag: "", title: "TODO SIGUE CONECTADO", body: "Ideas, campañas, tendencias y calendario trabajando dentro del mismo sistema." }
+      ],
+      m1Title: "Nueva idea", m1Save: "Guardar",
+      m2Title: "Clientes", m2New: "+ Nuevo cliente",
+      m2c1: "Cliente A", m2c2: "Cliente B", m2c3: "Cliente C",
+      m2t1: "Tono: Cercano", m2p1: "Plataformas: IG, TikTok", m2s1: "Estilo: Educativo",
+      m2t2: "Tono: Profesional", m2p2: "Plataformas: IG, LinkedIn",
+      m2t3: "Tono: Divertido", m2p3: "Plataformas: IB, TikTok",
+      m3label: "Idea seleccionada", m3generate: "GENERAR CONTENIDO",
+      m3tab2: "Guión", m3use: "Usar en guion",
+      m3ai: "¿Sabías que las marcas que cuentan historias reales conectan 3x más que las que solo venden? Te cuento cómo hacerlo en 3 pasos",
+      m4clients: "Clientes", m4campaigns: "Campañas", m4calendar: "Calendario",
+      mockExample: "Idea para reel sobre storytelling de marca",
+      mockExampleRich: "Idea para reel sobre <strong>storytelling de marca</strong>"
     },
     demo: {
       kicker: "DEMO / EN VIVO",
@@ -98,10 +113,10 @@ window.I18N = {
     },
     testimonials: {
       kicker: "PRENSA / LO QUE DICEN",
-      title: "CREADORES / QUE YA VOLVIERON / A SU CABEZA.",
+      title: "CREADORES USANDO MEJOR SUS IDEAS",
       t1: "CREADORES",
-      t2: "QUE YA VOLVIERON",
-      t3: "A SU CABEZA.",
+      t2: "USANDO MEJOR",
+      t3: "SUS IDEAS.",
       items: [
         { quote: "Pasé de tener 400 notas sueltas a un sistema. Real.", name: "Lucía M.", handle: "@luciacreates", role: "Creadora · 120k" },
         { quote: "El prompt de hook me ahorra dos horas por reel. No exagero.", name: "Diego R.", handle: "@diego.makes", role: "Editor · 45k" },
@@ -130,6 +145,7 @@ window.I18N = {
     nav: { product: "Product", how: "Demo", price: "Pricing", faq: "FAQ", cta: "Get it" },
     hero: {
       pre: "",
+      tagline: "Your ideas deserve more than sitting in drafts.",
       h1a: "DON'T",
       h1b: "KILL",
       h1c: "THE IDEA.",
@@ -142,7 +158,7 @@ window.I18N = {
     },
     problem: {
       kicker: "PROBLEM / 001",
-      h2: "WHY DO YOUR IDEAS DIE?",
+      h2: 'WHY DO YOUR <span style="color:var(--red)">IDEAS DIE</span>?',
       h1a: "YOUR IDEAS",
       h1b: "ARE DYING.",
       cards: [
@@ -153,16 +169,30 @@ window.I18N = {
       strike: "tomorrow"
     },
     solution: {
-      kicker: "SOLUTION / 004 PIECES",
+      kicker: "SOLUTION",
       transition: "UNTIL NOW.",
       callout: "DON'T KILL THE IDEA.",
-      lede: "One place where creative chaos turns into something real.",
+      lede: "FROM SCATTERED IDEAS TO REAL CONTENT.",
+      ledePart1: "FROM SCATTERED IDEAS TO",
+      ledePart2: "Real Content.",
       features: [
-        { tag: "→", title: "Instant capture", body: "Jot ideas and save links in seconds, from any device." },
-        { tag: "✦", title: "Clear organization", body: "Tags, categories, and views your brain gets at first sight." },
-        { tag: "◐", title: "Built-in AI prompts", body: "Turn an idea into a script, hook, or reel with one click." },
-        { tag: "□", title: "All in one place", body: "Stop hopping across 5 apps. One window, one mind." }
-      ]
+        { tag: "", title: "CAPTURE IDEAS WHEN THEY HAPPEN", body: "Save references, thoughts, links or concepts before they disappear." },
+        { tag: "", title: "EVERY CLIENT HAS CONTEXT", body: "Organize ideas by brand, tone, platform and content style." },
+        { tag: "", title: "TURN IDEAS INTO CONTENT", body: "Generate hooks, scripts, copy and prompts using AI connected to your creative workflow." },
+        { tag: "", title: "EVERYTHING STAYS CONNECTED", body: "Ideas, campaigns, trends and calendar all working inside the same system." }
+      ],
+      m1Title: "New idea", m1Save: "Save",
+      m2Title: "Clients", m2New: "+ New client",
+      m2c1: "Client A", m2c2: "Client B", m2c3: "Client C",
+      m2t1: "Tone: Friendly", m2p1: "Platforms: IG, TikTok", m2s1: "Style: Educational",
+      m2t2: "Tone: Professional", m2p2: "Platforms: IG, LinkedIn",
+      m2t3: "Tone: Fun", m2p3: "Platforms: IB, TikTok",
+      m3label: "Selected idea", m3generate: "GENERATE CONTENT",
+      m3tab2: "Script", m3use: "Use in script",
+      m3ai: "Did you know brands that tell real stories connect 3x more than those that just sell? Here's how to do it in 3 steps",
+      m4clients: "Clients", m4campaigns: "Campaigns", m4calendar: "Calendar",
+      mockExample: "Idea for a reel about brand storytelling",
+      mockExampleRich: "Idea for a reel about <strong>brand storytelling</strong>"
     },
     demo: {
       kicker: "DEMO / LIVE",
@@ -224,10 +254,10 @@ window.I18N = {
     },
     testimonials: {
       kicker: "PRESS / WHAT THEY SAY",
-      title: "CREATORS / WHO CAME BACK / TO THEIR HEAD.",
+      title: "CREATORS USING THEIR IDEAS BETTER.",
       t1: "CREATORS",
-      t2: "WHO CAME BACK",
-      t3: "TO THEIR HEAD.",
+      t2: "USING THEIR IDEAS",
+      t3: "BETTER.",
       items: [
         { quote: "Went from 400 loose notes to an actual system. Real talk.", name: "Lucía M.", handle: "@luciacreates", role: "Creator · 120k" },
         { quote: "The hook prompt saves me two hours per reel. No exaggeration.", name: "Diego R.", handle: "@diego.makes", role: "Editor · 45k" },
